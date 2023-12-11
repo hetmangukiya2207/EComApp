@@ -1,24 +1,28 @@
 import 'dart:convert';
-import 'package:ecomapp/module/Views/HomePage/model/ItemModel.dart';
 import 'package:http/http.dart' as http;
+
+import '../../Views/HomePage/model/ItemModel.dart';
 
 class APIHelper {
   APIHelper._();
 
   static APIHelper apiHelper = APIHelper._();
 
-  Future<ItemModel?> fetchItemData(String location) async {
-    String baseUrl =
-        "https://fakestoreapi.com/products";
+  Future<List<Product>?> callApi() async {
+    String Url = "https://dummyjson.com/products?limit=100";
 
-    http.Response res = await http.get(Uri.parse(baseUrl));
+    http.Response response = await http.get(Uri.parse(Url));
 
-    if (res.statusCode == 200) {
-      Map decodedData = jsonDecode(res.body);
-
-      ItemModel itemData = ItemModel.formMap(data: decodedData);
-
-      return itemData;
+    if (response.statusCode == 200) {
+      Map decodedData = jsonDecode(response.body);
+      List allData = decodedData['products'];
+      List<Product> myData = [];
+      allData.forEach((e) {
+        myData.add(
+          Product.formMap(data: e),
+        );
+      });
+      return myData;
     }
     return null;
   }

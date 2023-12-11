@@ -1,3 +1,5 @@
+import 'package:ecomapp/module/Views/CartPage/view/CartPage.dart';
+import 'package:ecomapp/module/Views/DetailPage/views/DetailsPage.dart';
 import 'package:ecomapp/module/Views/HomePage/views/HomePage.dart';
 import 'package:ecomapp/module/Views/IntroScreen/views/IntroScreen.dart';
 import 'package:ecomapp/module/Views/LogInPage/views/LogInPage.dart';
@@ -28,6 +30,8 @@ class MyApp extends StatelessWidget {
         'SignupPage': (context) => SignupPage(),
         'LogInPage': (context) => LogInPage(),
         '/': (context) => const HomePage(),
+        'DetailPage': (context) => const DetailPage(),
+        'CartPage': (context) => const CartPage(),
       },
     );
   }
